@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <li v-for="n in message">{{n}}</li>
+      </ul>
+      <button @click="btnClick">按钮</button>
+    </div>
+
+    <script src="../vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: "#app",
+        data: {
+          message: [1, 6, 3, 4, 5],
+        },
+        methods: {
+          btnClick() {
+            // 1.push
+            // this.message.push("abc");
+            // this.message.push("aaa", "bbb", "ccc");
+
+            // 2. pop 删除最后一个
+            // this.message.pop();
+
+            // 3. shift 删除第一个
+            // this.message.shift();
+
+            // 4. unshift 添加在第一个
+            // this.message.unshift("abc");
+            // this.message.unshift("abc", "bcd");
+
+            // 5.splice 增删改 切割
+            // splice(start,num,item)
+            // 删除时：第二个参数传入要删除的个数num（不传就删除所有）
+            // this.message.splice(2, 2);
+            // 替换时：第三个参数传入要传入的数据
+            // this.message.splice(1, 2, "a", "b", "c");
+            // 插入元素： 第二个参数写0 后面加上要传入的参数
+            // this.message.splice(1, 0, "abc");
+
+            // 6.sort
+            // this.message.sort();
+
+            // 7.reverse
+            // this.message.reverse();
+
+            // ※通过索引值修改数组元素 不是响应式
+            // this.message[0] = "bbb";
+            // set(要修改的对象,索引值,修改后的值)
+            Vue.set(this.message, 0, "aaa");
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

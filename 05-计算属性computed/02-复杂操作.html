@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id='app'>
+    totalfans: {{totalfans}}
+  </div>
+
+  <script src="../vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        books: [
+          { id: 1, name: "hua", fans: 300 },
+          { id: 2, name: "shao", fans: 400 },
+          { id: 3, name: "bei", fans: 500 },
+          { id: 4, name: "hsb", fans: 680 },
+        ]
+      },
+      computed: {
+        totalfans: function () {
+          let total = 0;
+
+          // 简单for循环
+          // for (let i = 0; i < this.books.length; i++) {
+          //   total += this.books[i].fans;
+          // }
+
+          // for ... in ...
+          // for (let i in this.books) {
+          //   total += this.books[i].fans
+          // }
+
+          // for ... of ...
+          for (let book of this.books) {
+            total += book.fans
+          }
+          return total;
+
+        }
+      },
+      methods: {
+
+      },
+    })
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id='app'>
+    <!-- 1. 阻止事件冒泡：stop -->
+    <div @click="stopdiv">
+      stop
+      <button @click="stop">without stop</button>
+      <button @click.stop="stop">.stop阻止事件冒泡</button>
+    </div>
+    <!-- 2. 阻止默认事件（eg.submit） -->
+    <form action="aha">
+      <input @click="submit" type="submit" name="" id="" value="直接提交">
+      <input @click.prevent="submit" type="submit" name="" id="" value="提交">
+    </form>
+    <!-- 3. 监听指定按钮键入事件 -->
+    <input type="text" @keyup="keyup">
+    <input type="text" @keyup.enter="keyup">
+    <input type="text" @keyup.13="keyup">
+    <!-- 4. once 使按钮只生效一次 -->
+    <button @click="once">once</button>
+    <button @click.once="once">true once</button>
+  </div>
+
+  <script src="../vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: ''
+      },
+      methods: {
+        stop() {
+          console.log('btnclick')
+        },
+        stopdiv() {
+          console.log('divclick')
+        },
+        submit() {
+          console.log('提交')
+        },
+        keyup() {
+          console.log("keyup");
+        },
+        once() {
+          console.log('once');
+        }
+      },
+    })
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 1.单选用法 -->
+      <!-- 加label：点击文字也可以选中 -->
+      <label for="agreement">
+        <input type="checkbox" name="" id="agreement" v-model="isAgree" />同意协议
+      </label>
+      <!-- 点击同意之后进行下一步 -->
+      <button :disabled="!isAgree">下一步</button>
+      <p v-show="isAgree">next</p>
+      <br />
+      <!-- 2.多选用法 -->
+      <input type="checkbox" v-model="yeah" name="" id="" value="flower" />花
+      <input type="checkbox" v-model="yeah" name="" id="" value="sun" />太阳
+      <input type="checkbox" v-model="yeah" name="" id="" value="rain" />雨
+      <h3>what is u:{{yeah}}</h3>
+      <!-- v-model绑定的是value值 -->
+
+      <!-- 值绑定 -> :value -->
+      <label v-for="item in selections" :for="item">
+        <input type="checkbox" :id="item" :value="item" v-model="yeah" />{{item}}
+      </label>
+    </div>
+
+    <script src="../vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: "#app",
+        data: {
+          message: "",
+          isAgree: false, //单选框
+          yeah: [], //多选框
+          selections: ["blue", "orange", "pink", "yellow"],
+        },
+        methods: {},
+      });
+    </script>
+  </body>
+</html>

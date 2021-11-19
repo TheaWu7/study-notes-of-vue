@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 1. 给 const 修饰的标识符赋值后，不能修改
+    const name = "hua";
+    // name = "shao";
+
+    // 2. 常量的含义是 指向的对象不能更改，但是可以改变对象内部的属性
+    const obj = {
+      name: "bei",
+      age: 26,
+      height: 1.83
+    }
+    // obj = {};
+    obj.height = 1.82;
+    console.log(obj);
+
+    // 用const赋值，是存储了对象的内存地址
+  </script>
+</body>
+
+</html>

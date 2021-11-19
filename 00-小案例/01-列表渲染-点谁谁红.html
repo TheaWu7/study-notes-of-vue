@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .colorful {
+        color: tomato;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <li v-for="n in message" @click="turnRed" :key="n">{{n}}</li>
+      </ul>
+      <ul>
+        <li
+          v-for="(n,index) in message"
+          @click="colorful(index)"
+          :class="{colorful:currentIndex === index}"
+        >
+          {{n}}
+        </li>
+      </ul>
+    </div>
+
+    <script src="../vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: "#app",
+        data: {
+          message: [1, 2, 3, 4],
+          currentIndex: 0,
+        },
+        methods: {
+          turnRed(e) {
+            console.log(e.target);
+            e.target.style.color = "red";
+          },
+          colorful(index) {
+            this.currentIndex = index;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

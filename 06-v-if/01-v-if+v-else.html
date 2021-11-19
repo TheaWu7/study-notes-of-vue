@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id='app'>
+    <!-- 条件渲染 -->
+    <h2 v-if="sc>=90">优秀</h2>
+    <h2 v-else-if="sc>=80">秀</h2>
+    <h2 v-else-if="sc>=60">及格</h2>
+    <h2 v-else>不及格</h2>
+
+    <!-- 计算属性 -->
+    <h1>{{showMessage}}</h1>
+  </div>
+
+  <script src="../vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        sc: 92,
+        message: ''
+      },
+      methods: {
+
+      },
+      computed: {
+        showMessage() {
+          let result = '';
+          if (this.sc > 90) {
+            result = '优秀'
+          } else if (this.sc >= 80) {
+            result = '良好'
+          } else if (this.sc >= 60) {
+            result = '及格'
+          } else {
+            result = '不及格'
+          }
+          return result;
+        }
+      }
+    })
+  </script>
+
+</body>
+
+</html>

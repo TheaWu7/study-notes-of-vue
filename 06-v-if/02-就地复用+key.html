@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id='app'>
+    <div class="reuse">
+      <h4>就地复用</h4>
+      <span class="account" v-if="isShow">
+        <span>用户账号</span>
+        <input type="text" name="" id="" placeholder="用户账号">
+      </span>
+      <span class="address" v-else>
+        <span>邮箱地址</span>
+        <input type="text" name="" id="" placeholder="邮箱地址">
+      </span>
+      <button @click="change">切换</button>
+      <button @click="isShow=!isShow">切换</button>
+    </div>
+    <div class="key">
+      <h4>解决就地复用：key</h4>
+      <span class="account" v-if="isShowed">
+        <span>用户账号</span>
+        <input type="text" name="" id="" placeholder="用户账号" key="account">
+      </span>
+      <span class="address" v-else>
+        <span>邮箱地址</span>
+        <input type="text" name="" id="" placeholder="邮箱地址" key="address">
+      </span>
+      <button @click="changed">切换</button>
+      <button @click="isShowed=!isShowed">切换</button>
+    </div>
+  </div>
+
+  <script src="../vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        isShow: true,
+        isShowed: true,
+        account: '用户账号',
+        address: '邮箱地址',
+      },
+      methods: {
+        change() {
+          this.isShow = !this.isShow
+        }, changed() {
+          this.isShowed = !this.isShowed
+        }
+      },
+    })
+  </script>
+
+</body>
+
+</html>

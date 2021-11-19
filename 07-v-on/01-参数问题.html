@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id='app'>
+    <!--  点击事件基本使用 -->
+    <button @click="btnclick()">按钮1</button>
+    <!-- 不传参数的时候可以不用加括号() -->
+    <button @click="btnclick">按钮2</button>
+
+    <!-- 如果写的方法需要传参，但调用的时候没有加括号：vue会传点击事件的event -->
+    <button @click="btnEvent">传点击事件</button>
+
+    <!-- 同时需要传参&点击事件 -->
+    <button @click="btnBoth('aaa',$event)">传参&传事件$event</button>
+  </div>
+
+  <script src="../vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: ''
+      },
+      methods: {
+        btnclick() {
+          console.log(123);
+        },
+        btnEvent(e) {
+          console.log(e);
+        },
+        btnBoth(a, e) {
+          console.log(a, e)
+        }
+      },
+    })
+  </script>
+
+</body>
+
+</html>

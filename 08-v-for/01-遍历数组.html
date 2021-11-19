@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 1.普通遍历 -->
+    <ul>
+      <li v-for="item in message">{{item}}</li>
+    </ul>
+    <!-- 2.带下标遍历 -->
+    <ul>
+      <li v-for="(name,index) in message">{{index+1}}.{{name}}</li>
+    </ul>
+    <ul>
+      <li v-for="(a,i) in message">{{i+1}}.{{a}}</li>
+    </ul>
+  </div>
+
+  <script src="../vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        message: ["123", "hua", "lala"],
+      },
+      methods: {},
+    });
+  </script>
+</body>
+
+</html>

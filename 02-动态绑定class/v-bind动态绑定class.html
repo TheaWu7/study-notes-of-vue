@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .color {
+      color: pink;
+    }
+
+    .size {
+      font-size: 2em;
+    }
+  </style>
+</head>
+
+<body>
+  <div id='app'>
+    <!-- 动态绑定class -->
+    <!-- <h2 :class="{key1: value1, key2: value2}">笑死</h2> -->
+    <!-- <h2 :class="{key1: true, key2: false}">笑死</h2> -->
+
+    <!-- 对象语法 -->
+    <!-- 两者兼容（class & :class） -->
+    <p class="title" :class="{color: isColor, size: isSize}">笑不活了</p>
+    <!-- 给动态绑定类加函数 -->
+    <p class="title" :class="setClass()">笑不活了</p>
+
+    <!-- methods -->
+    <button v-on:click="btnClick">convert</button>
+  </div>
+
+  <script src="../vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: '',
+        isColor: true,
+        isSize: true
+      },
+      methods: {
+        btnClick: function () {
+          this.isColor = !this.isColor
+        },
+        setClass: function () {
+          return { color: this.isColor, size: this.isSize }
+        }
+      }
+    })
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+
+  <body>
+    <div id="app">
+      <div class="" v-if="msg.length">
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>书名</th>
+              <th>出版日期</th>
+              <th>价格</th>
+              <th>数量</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(n,index) in msg">
+              <th>{{index+1}}</th>
+              <th>{{n.name}}</th>
+              <th>{{n.date}}</th>
+              <!-- <th>￥{{n.price.toFixed(2)}}</th> -->
+              <!-- <th>{{getFinalPrice(n.price)}}</th> -->
+              <th>{{n.price | showPrice}}</th>
+              <th>
+                <button @click="n.num --" :disabled="n.num <= 1">-</button>
+                {{n.num}}
+                <button @click="n.num ++">+</button>
+              </th>
+              <th><button @click="remove(index)">移除</button></th>
+            </tr>
+          </tbody>
+        </table>
+        <h3>总价格：{{totalPrice | showPrice}}</h3>
+      </div>
+      <div class="" v-else>
+        <h3>购物车为空</h3>
+      </div>
+    </div>
+
+    <script src="../../vue.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>

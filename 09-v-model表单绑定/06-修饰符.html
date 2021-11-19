@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 1.lazy 用户输入完成后，绑定数据 -->
+      <input type="text" name="" id="" v-model.lazy="message" />
+      <h3>{{message}}</h3>
+
+      <!-- 2.number (v-model默认绑定值类型为string)-->
+      <input type="number" name="" id="" v-model="age" />
+      <h3>{{age}}--{{typeof age}}</h3>
+      <input type="number" name="" id="" v-model.number="ages" />
+      <h3>{{ages}}--{{typeof ages}}</h3>
+
+      <!-- 3.trim 去除首尾空格 -->
+      <input type="text" name="" id="" v-model="name" />
+      <h3>content:{{name}}</h3>
+      <input type="text" name="" id="" v-model.trim="names" />
+      <h3>content:{{names}}</h3>
+    </div>
+
+    <script src="../vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: "#app",
+        data: {
+          message: "",
+          age: 0,
+          ages: 0,
+          name: "",
+          names: "",
+        },
+        methods: {},
+      });
+    </script>
+  </body>
+</html>

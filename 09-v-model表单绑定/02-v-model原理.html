@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- msg & input 双向绑定 -->
+      <!-- <input type="text" name="" id="" v-model="message" /> -->
+
+      <input
+        type="text"
+        :value="message"
+        @input="message=$event.target.value"
+      />
+
+      <textarea type="text" :value="message" @input="valueChange"></textarea>
+
+      <!-- msg绑定到input（msg内容在input里输出） -->
+      <!-- <input type="text" name="" id="" :value="message" /> -->
+      <!-- input绑定到msg（input输入内容写入msg）-->
+      <!-- <input type="text" name="" id="" @input="valueChange" /> -->
+
+      {{message}}
+    </div>
+
+    <script src="../vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: "#app",
+        data: {
+          message: "aloha",
+        },
+        methods: {
+          valueChange(e) {
+            this.message = e.target.value;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
