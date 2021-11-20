@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 父组件 -->
+    <div id="app">
+      <!-- 给子组件传值 将父组件data中的msg/movies传给子组件的cmsg/c-  -->
+      <cpn :cmessage="message" :cmovies="movies"></cpn>
+      <!-- :c-mesg -->
+    </div>
+
+    <!-- 子组件 -->
+    <template id="thea">
+      <div>
+        <!-- 子组件直接调用 -->
+        <h3>{{cmessage}}</h3>
+        <ul>
+          <li v-for="item in cmovies">{{item}}</li>
+        </ul>
+      </div>
+    </template>
+
+    <script src="../vue.js"></script>
+    <script>
+      // 子组件
+      const cpn = {
+        template: "#thea",
+        // 父传子 props (命名若为驼峰，在父组件上给子组件绑定数据时，用"-"替换（line14）,子组件中数据渲染的时候依旧驼峰)
+        // 1. 数组形式传递
+        // props: ["cmessage", "cmovies"],
+
+        // 2. 对象形式传递
+        props: {
+          // 2.1 可限制传递数据的类型
+          // cmovies: Array,
+          // cmessage: String,
+
+          // 2.2 可提供默认值 & 必传值
+          cmessage: {
+            type: String,
+            default: "父传子 没有传值时，默认显示的内容",
+            required: true, //给cmsg传值的时候必传这个属性，不然报错：Missing required prop: "cmessage"
+          },
+          cmovies: {
+            type: Array,
+            // 若是多种类型：
+            // type: [String, Array],
+            default: [],
+          },
+        },
+        data() {
+          return {};
+        },
+        methods: {},
+      };
+
+      // 父组件
+      const app = new Vue({
+        el: "#app",
+        data: {
+          message: "hello",
+          movies: ["cmbyn", "花样年华"],
+        },
+        methods: {},
+        components: { cpn },
+      });
+    </script>
+  </body>
+</html>

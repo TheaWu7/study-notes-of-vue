@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <cpn></cpn>
+    </div>
+
+    <!-- 模板分离 -->
+    <template id="thea">
+      <h2>hello,thea</h2>
+    </template>
+
+    <script src="../vue.js"></script>
+    <script>
+      // 用id绑定
+      Vue.component("cpn", {
+        template: "#thea",
+      });
+
+      const app = new Vue({
+        el: "#app",
+        data: {
+          message: "",
+        },
+        methods: {},
+      });
+    </script>
+  </body>
+</html>

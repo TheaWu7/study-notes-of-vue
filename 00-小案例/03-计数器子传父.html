@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <counter @increclick="changeNum" @decreclick="changeNum"></counter>
+      <h3>计数君：{{total}}</h3>
+    </div>
+
+    <template id="cpn">
+      <div>
+        <button @click="decrement">-1</button>
+        <button @click="increment">+1</button>
+      </div>
+    </template>
+
+    <script src="../vue.js"></script>
+    <script>
+      const counter = {
+        template: "#cpn",
+        data() {
+          return {
+            counter: 0,
+          };
+        },
+        methods: {
+          decrement() {
+            this.counter--;
+            this.$emit("decreclick", this.counter);
+          },
+          increment() {
+            this.counter++;
+            this.$emit("increclick", this.counter);
+          },
+        },
+      };
+      const app = new Vue({
+        el: "#app",
+        data: {
+          message: "",
+          total: 0,
+        },
+        methods: {
+          // counter 从 子组件的 this.counter 传过来的
+          changeNum(num) {
+            this.total = num;
+          },
+        },
+        components: {
+          counter,
+        },
+      });
+    </script>
+  </body>
+</html>

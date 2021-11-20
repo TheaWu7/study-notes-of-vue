@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 3.使用组件 -->
+      <thea-cpn></thea-cpn>
+      <thea-cpn></thea-cpn>
+      <cpn></cpn>
+    </div>
+
+    <script src="../vue.js"></script>
+    <script>
+      // 1.创建组件构造器
+      const cpnConstructor = Vue.extend({
+        template: `
+      <div>
+        <h2>hello</h2>
+        <h3>I'm Thea</h3>  
+      </div>
+      `,
+      });
+
+      // 2.1 注册全局组件
+      Vue.component("thea-cpn", cpnConstructor);
+
+      const app = new Vue({
+        el: "#app",
+        data: {
+          message: "",
+        },
+        methods: {},
+
+        // 2.2 注册局部组件
+        components: {
+          // 组件名：构造器
+          cpn: cpnConstructor,
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <cpn></cpn>
+      <cpn></cpn>
+      <!-- 两次调用组件，里面的data都是新的（因为data是函数，每次调用都会在栈里新建一个空间来储存数据） -->
+    </div>
+
+    <template id="thea">
+      <div>
+        <h2>当前计数：{{count}}</h2>
+        <button @click="decrement">-</button>
+        <button @click="increment">+</button>
+      </div>
+    </template>
+    <script src="../vue.js"></script>
+    <script>
+      Vue.component("cpn", {
+        template: "#thea",
+        // 如果组件里的data是对象
+        // data: {
+        //   title: "just a title",
+        //   content: "some content",
+        // },
+        // 看报错：The "data" option should be a function that returns a per-instance value in component definitions.
+        // 每一个组件实例都要有一个自己的状态，如果是对象的话，返回的都是同一个值，对组件的复用有影响，
+        // 是函数的话就每个组件的data都有一个自己的内存空间，复用的时候不会相互影响
+        data() {
+          return {
+            count: 0,
+          };
+        },
+        methods: {
+          decrement() {
+            this.count--;
+          },
+          increment() {
+            this.count++;
+          },
+        },
+      });
+      const app = new Vue({
+        el: "#app",
+        data: {
+          message: "",
+        },
+        methods: {},
+      });
+    </script>
+  </body>
+</html>
