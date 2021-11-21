@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 父组件中 在子组件标签上写的属性值 依旧参考父组件的data -->
+      <cpn v-show="isShow"></cpn>
+    </div>
+
+    <template id="thea">
+      <div>
+        <h2>title</h2>
+        <!-- 子组件也是参考自己作用域里的data -->
+        <p v-show="isShow">graph</p>
+      </div>
+    </template>
+
+    <script src="../vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: "#app",
+        data: {
+          message: "",
+          isShow: true,
+        },
+        methods: {},
+        components: {
+          cpn: {
+            template: "#thea",
+            data() {
+              return {
+                isShow: false,
+              };
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

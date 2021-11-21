@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 控制变量对照组 -->
+      <cpn></cpn>
+      <!-- 替换时没有加slot="xxx" -->
+      <cpn>
+        <i
+          >整一个替换元素（在编辑的时候如果没有给标签加上"slot='xxx'"就会默认替换掉插槽中没有命名的）</i
+        >
+      </cpn>
+      <!-- 替换时加了属性 -->
+      <cpn><b slot="center">c位</b></cpn>
+    </div>
+
+    <template id="thea">
+      <div>
+        <!-- 具名插槽：slot中加一个name属性 -->
+        <slot name="left"><span>左边</span></slot>
+        <slot name="center"><button>中间</button></slot>
+        <slot>右边</slot>
+      </div>
+    </template>
+
+    <script src="../vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: "#app",
+        data: {
+          message: "",
+        },
+        methods: {},
+        components: {
+          cpn: {
+            template: "#thea",
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

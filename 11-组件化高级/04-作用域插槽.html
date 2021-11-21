@@ -1,0 +1,64 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 目标：获取子组件中的planguage（用别的方法展示） -->
+      <cpn></cpn>
+      <!-- 旧方法 -->
+      <cpn>
+        <div slot-scope="slot">
+          <span v-for="n in slot.data">{{n}}-- </span>
+          <!-- or -->
+          <span>{{slot.data.join(' - ')}}</span>
+        </div>
+      </cpn>
+      <!-- 新方法(v-slot只能在template or component 中使用) -->
+      <cpn>
+        <template v-slot:default="thea">
+          <span>{{thea.data}}</span>
+        </template>
+      </cpn>
+    </div>
+
+    <template id="thea">
+      <div>
+        <!-- 子组件通过:data给父组件传值 -->
+        <slot :data="pLanguage">
+          <ul>
+            <li v-for="n in pLanguage">{{n}}</li>
+          </ul>
+        </slot>
+      </div>
+    </template>
+
+    <script src="../vue.js"></script>
+    <!-- <script src="https://unpkg.com/vue@next"></script> -->
+
+    <script>
+      const app = new Vue({
+        el: "#app",
+        data: {
+          message: "",
+          isShow: true,
+        },
+        methods: {},
+        components: {
+          cpn: {
+            template: "#thea",
+            data() {
+              return {
+                pLanguage: ["c", "js", "ts"],
+                isShow: false,
+              };
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
