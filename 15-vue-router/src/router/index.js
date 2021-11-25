@@ -4,6 +4,7 @@ import VueRouter from "vue-router";
 import Thea from "../components/Thea.vue";
 import Momo from "../components/Momo.vue";
 import yu from "../components/yu.vue";
+import user from "../components/user.vue";
 
 // 1.通过 Vue.use(插件),安装插件
 Vue.use(VueRouter);
@@ -27,6 +28,10 @@ const routes = [
   {
     path: "/yu",
     component: yu,
+  },
+  {
+    path: "/user/:yonghuxinxila",
+    component: user,
   },
 ];
 
