@@ -9,6 +9,9 @@ import VueRouter from "vue-router";
 
 // 路由懒加载 => 打包出来 一个route 对应 一个js文件
 const Thea = () => import("../components/Thea.vue");
+const TheaNews = () => import("../components/TheaNews.vue");
+const TheaMsg = () => import("../components/TheaMsg.vue");
+
 const Momo = () => import("../components/Momo.vue");
 const yu = () => import("../components/yu.vue");
 // const user = () => import("../components/user.vue");
@@ -28,6 +31,20 @@ const routes = [
   {
     path: "/thea",
     component: Thea,
+    children: [
+      {
+        path: "",
+        redirect: "news",
+      },
+      {
+        path: "news",
+        component: TheaNews,
+      },
+      {
+        path: "msg",
+        component: TheaMsg,
+      },
+    ],
   },
   {
     path: "/momo",
