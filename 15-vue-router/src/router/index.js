@@ -1,10 +1,18 @@
 // 配置路由相关信息
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Thea from "../components/Thea.vue";
-import Momo from "../components/Momo.vue";
-import yu from "../components/yu.vue";
-import user from "../components/user.vue";
+
+// import Thea from "../components/Thea.vue";
+// import Momo from "../components/Momo.vue";
+// import yu from "../components/yu.vue";
+// import user from "../components/user.vue";
+
+// 路由懒加载 => 打包出来 一个route 对应 一个js文件
+const Thea = () => import("../components/Thea.vue");
+const Momo = () => import("../components/Momo.vue");
+const yu = () => import("../components/yu.vue");
+// const user = () => import("../components/user.vue");
+// 也可以直接放在配置里 like line42
 
 // 1.通过 Vue.use(插件),安装插件
 Vue.use(VueRouter);
@@ -31,7 +39,7 @@ const routes = [
   },
   {
     path: "/user/:yonghuxinxila",
-    component: user,
+    component: () => import("../components/user.vue"),
   },
 ];
 
