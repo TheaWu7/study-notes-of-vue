@@ -19,7 +19,16 @@
     <!-- 用v-bind绑定，动态获取传过来的userId -->
     <!-- <router-link :to="'/user/'+userId">用户</router-link> -->
     <router-link :to="'/user/'+userId" :userId='userId'>用户</router-link>
+    <br><hr><br>
+
+    <h2>传递参数</h2>
+    <!-- <router-link to="/profile">profile</router-link> -->
+    <router-link :to="{path: '/profile',query:{name: 'yu',age:18}}">profile</router-link>
+
+    <button @click="userClick">User</button>
+    <button @click="profClick">Profile</button>
     <br><br><router-view style="border:1px solid black"></router-view>
+
   </div>
 </template>
 <script>
@@ -40,6 +49,18 @@ export default {
       this.$router.replace('/momo');
       // $router => new Router的对象
     },
+    userClick(){
+      this.$router.push('/user/' + this.userId)
+    },
+    profClick(){
+      this.$router.push({
+        path: '/profile',
+        query: {
+          name: 'thea',
+          age: 17
+        }
+      })
+    }
   }
 }
 </script>

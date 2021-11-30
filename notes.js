@@ -66,3 +66,9 @@ for (let n of double) {
   total += n;
 }
 console.log(total);
+
+const obj = {
+  name: "thea",
+};
+// 给对象定义（添加）属性
+Object.defineProperty(obj, "age", 16);

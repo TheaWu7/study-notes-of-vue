@@ -14,8 +14,9 @@ const TheaMsg = () => import("../components/TheaMsg.vue");
 
 const Momo = () => import("../components/Momo.vue");
 const yu = () => import("../components/yu.vue");
+const profile = () => import("../components/profile.vue");
 // const user = () => import("../components/user.vue");
-// 也可以直接放在配置里 like line42
+// 也可以直接放在配置里 like user
 
 // 1.通过 Vue.use(插件),安装插件
 Vue.use(VueRouter);
@@ -57,6 +58,10 @@ const routes = [
   {
     path: "/user/:yonghuxinxila",
     component: () => import("../components/user.vue"),
+  },
+  {
+    path: "/profile",
+    component: profile,
   },
 ];
 
