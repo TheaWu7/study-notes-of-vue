@@ -5,6 +5,21 @@
 </template>
 <script>
 export default {
-  name: 'yu'
+  name: 'yu',
+  /**
+   * 如果没有keep-alive
+   * 在每次点击这个页面时 会调 created
+   * 离开页面会调 destroyed
+   */
+  created(){
+    console.log('yu created');
+  },
+  destroyed(){
+    console.log('destroyed');
+  }
+  /**
+   * 如果加了 keep-alive
+   * 离开时则不会销毁组件 不会调 destroyed
+   */
 }
 </script>

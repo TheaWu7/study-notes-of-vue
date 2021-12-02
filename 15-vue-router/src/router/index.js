@@ -95,7 +95,7 @@ router.beforeEach((to, from, next) => {
   // document.title = to.meta.title;
   document.title = to.matched[0].meta.title; // 获取的最外层的title（针对有children的）
   // document.title => 设置web在浏览器tab页上的标题
-  console.log(to);
+  // console.log(to);
   next();
   console.log("++++");
 });

@@ -27,8 +27,13 @@
 
     <button @click="userClick">User</button>
     <button @click="profClick">Profile</button>
-    <br><br><router-view style="border:1px solid black"></router-view>
+    <br><br>
+    
+    <!-- <router-view style="border:1px solid black"/> -->
 
+    <keep-alive>
+      <router-view style="border:1px solid black"/>
+    </keep-alive>
   </div>
 </template>
 <script>
