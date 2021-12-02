@@ -16,10 +16,20 @@ export default {
   },
   destroyed(){
     console.log('destroyed');
-  }
+  },
   /**
    * 如果加了 keep-alive
    * 离开时则不会销毁组件 不会调 destroyed
    */
+
+  /**
+   * 下面两个函数 只有在组件被保留了状态 使用了 keep-alive 时，才有效果
+   */
+  activated(){
+    console.log('activated');
+  },
+  deactivated() {
+    console.log('deactivated');
+  }
 }
 </script>
