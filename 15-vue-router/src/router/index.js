@@ -32,6 +32,9 @@ const routes = [
   {
     path: "/thea",
     component: Thea,
+    meta: {
+      title: "Thea",
+    },
     children: [
       {
         path: "",
@@ -40,6 +43,9 @@ const routes = [
       {
         path: "news",
         component: TheaNews,
+        meta: {
+          title: "news",
+        },
       },
       {
         path: "msg",
@@ -50,10 +56,20 @@ const routes = [
   {
     path: "/momo",
     component: Momo,
+    meta: {
+      title: "momo",
+    },
+    beforeEnter: (to, from, next) => {
+      console.log("(❤ ω ❤)");
+      next(); //没有next的时候不打印----
+    },
   },
   {
     path: "/yu",
     component: yu,
+    meta: {
+      title: "yu",
+    },
   },
   {
     path: "/user/:yonghuxinxila",
@@ -71,6 +87,22 @@ const router = new VueRouter({
   mode: "history",
   // 统一更改active(如果在标签内由设置，就以标签内的为主)
   linkActiveClass: "yuyu",
+});
+
+// 前置守卫（guard）
+router.beforeEach((to, from, next) => {
+  // 从from跳转到to
+  // document.title = to.meta.title;
+  document.title = to.matched[0].meta.title; // 获取的最外层的title（针对有children的）
+  // document.title => 设置web在浏览器tab页上的标题
+  console.log(to);
+  next();
+  console.log("++++");
+});
+
+// 后置钩子（hook）
+router.afterEach((to, from) => {
+  console.log("-----");
 });
 
 // 3.将 router 对象传入到 Vue 实例中
