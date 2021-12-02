@@ -31,7 +31,9 @@
     
     <!-- <router-view style="border:1px solid black"/> -->
 
-    <keep-alive>
+    <!-- 想要有些路由每次进入都新建 退出都销毁： exclude='name'(组件名称) -->
+    <!-- 如果排除多个 不要加空格 -->
+    <keep-alive exclude="momo">
       <router-view style="border:1px solid black"/>
     </keep-alive>
   </div>
