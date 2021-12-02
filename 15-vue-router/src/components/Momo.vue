@@ -6,7 +6,13 @@
 
 <script>
 export default {
-  name: 'momo'
+  name: 'momo',
+    created(){
+    console.log('mo created');
+  },
+  destroyed(){
+    console.log('mo destroyed');
+  },
 }
 </script>
 

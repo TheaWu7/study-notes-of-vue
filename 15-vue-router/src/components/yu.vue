@@ -26,10 +26,18 @@ export default {
    * 下面两个函数 只有在组件被保留了状态 使用了 keep-alive 时，才有效果
    */
   activated(){
-    console.log('activated');
+    // this.$router.push(this.path); //在路由有多个子路由的时候 保持子路由关闭时的状态；在再次打开时 依旧是当时的状态
+    console.log('yu activated');
+  },
+
+  // 在路由有多个子路由的时候 保持子路由关闭时的状态；在再次打开时 依旧是当时的状态
+  beforeRouterLeave(to,from,next){
+    console.log(this.$route.path);
+    this.path = this.$route.path;
+    next();
   },
   deactivated() {
-    console.log('deactivated');
-  }
+    console.log('yu deactivated');
+  },
 }
 </script>

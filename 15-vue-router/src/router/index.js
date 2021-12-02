@@ -60,7 +60,7 @@ const routes = [
       title: "momo",
     },
     beforeEnter: (to, from, next) => {
-      console.log("(❤ ω ❤)");
+      console.log("mo beforeEnter ❤");
       next(); //没有next的时候不打印----
     },
   },
@@ -97,12 +97,12 @@ router.beforeEach((to, from, next) => {
   // document.title => 设置web在浏览器tab页上的标题
   // console.log(to);
   next();
-  console.log("++++");
+  // console.log("beforeEach:++++");
 });
 
 // 后置钩子（hook）
 router.afterEach((to, from) => {
-  console.log("-----");
+  // console.log("afterEach:-----");
 });
 
 // 3.将 router 对象传入到 Vue 实例中
