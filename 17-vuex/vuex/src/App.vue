@@ -4,9 +4,13 @@
     <h3>
       {{counter}}
     </h3>
-
     <button @click="counter++">+</button>
     <button @click="counter--">-</button>
+
+    <h4>{{$store.state.counter}}</h4>
+    <button @click="add">+</button>
+    <button @click="sub">-</button>
+
     <!-- 父传子 -->
     <hello :counter='counter' />
   </div>
@@ -23,6 +27,15 @@ export default {
   },
   components: {
     hello,
+  },
+  methods:{
+    add(){
+      // 使用vuex中定义的方法
+      this.$store.commit('increment')
+    },
+    sub(){
+      this.$store.commit('decrement')
+    }
   }
 }
 </script>

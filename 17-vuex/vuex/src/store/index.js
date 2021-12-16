@@ -4,8 +4,19 @@
 import { createStore } from "vuex";
 
 export default createStore({
-  state: {},
-  mutations: {},
+  // 保存状态
+  state: {
+    counter: 100,
+  },
+  // 方法
+  mutations: {
+    increment(state) {
+      state.counter++;
+    },
+    decrement(state) {
+      state.counter--;
+    },
+  },
   actions: {},
   modules: {},
 });
