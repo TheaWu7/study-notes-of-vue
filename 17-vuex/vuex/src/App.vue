@@ -10,12 +10,19 @@
     <h4>{{$store.state.counter}}</h4>
     <button @click="add">+</button>
     <button @click="sub">-</button>
+
     <h2>-----App的getter-----</h2>
     <h4>{{$store.state.stu}}</h4>
     <!-- 获取九月之后的（computed方法） -->
     <h4>computed:{{gt900}}</h4>
     <!-- vuex的getters方法 -->
     <h4>getters:{{$store.getters.moreSep}}</h4>
+
+    <!-- 获取gtsep的个数 -->
+    <h4>length:{{$store.getters.moreSepLength}}</h4>
+    <!-- 获取年龄大于age（不定）的stu -->
+    <h4>{{$store.getters.gtAge(600)}}</h4>
+
     <!-- 父传子 -->
     <hello :counter='counter' />
   </div>
