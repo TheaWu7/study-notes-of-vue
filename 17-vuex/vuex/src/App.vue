@@ -21,7 +21,7 @@
     <!-- 获取gtsep的个数 -->
     <h4>length:{{$store.getters.moreSepLength}}</h4>
     <!-- 获取年龄大于age（不定）的stu -->
-    <h4>{{$store.getters.gtAge(600)}}</h4>
+    <h4>传参：{{$store.getters.gtAge(600)}}</h4>
 
     <!-- 父传子 -->
     <hello :counter='counter' />

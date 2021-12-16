@@ -39,9 +39,7 @@ export default createStore({
       // return function (iage) {
       //   return state.stu.filter((s) => s.age > iage);
       // };
-      return (iage) => {
-        state.stu.filter((s) => s.age > iage);
-      };
+      return (iage) => state.stu.filter((s) => s.age > iage);
     },
   },
   actions: {},
