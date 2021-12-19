@@ -1,4 +1,8 @@
 /**
+ *  vuex 的 store 状态的唯一更新方式：提交mutation
+ */
+
+/**
  *  原本内容
  */
 import { createStore } from "vuex";
@@ -15,12 +19,24 @@ export default createStore({
     ],
   },
   // 方法
+  /**
+   * mutation：
+   *  1. 字符串的事件类型(type)
+   *  2. 回调函数(handler),其第一个参数就是state
+   *  3. mutation携带参数：payload eg.count stu
+   */
   mutations: {
     increment(state) {
       state.counter++;
     },
     decrement(state) {
       state.counter--;
+    },
+    addCount(state, count) {
+      state.counter += count;
+    },
+    addStu(state, stu) {
+      state.stu.push(stu);
     },
   },
   // getters

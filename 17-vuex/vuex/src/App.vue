@@ -10,6 +10,9 @@
     <h4>{{$store.state.counter}}</h4>
     <button @click="add">+</button>
     <button @click="sub">-</button>
+    <button @click="addCount(5)">+5</button>
+    <button @click="addCount(10)">+10</button>
+    <button @click="addStu">+stu</button>
 
     <h2>-----App的getter-----</h2>
     <h4>{{$store.state.stu}}</h4>
@@ -49,10 +52,19 @@ export default {
   methods:{
     add(){
       // 使用vuex中定义的方法
+      // 通过mutation更新
       this.$store.commit('increment')
     },
     sub(){
       this.$store.commit('decrement')
+    },
+    addCount(count){
+      // count: 荷载 payload
+      this.$store.commit('addCount',count)
+    },
+    addStu(){
+      const stu = {id:105, name: 'hua',age:611};
+      this.$store.commit('addStu',stu)
     }
   }
 }
