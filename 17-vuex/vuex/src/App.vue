@@ -30,6 +30,14 @@
     <h4>info:{{$store.state.info}}</h4>
     <button @click="changeinfo">changeinfo</button>
     <button @click="acyncUpdateInfo">acyncUpdateInfo</button>
+
+    <h4>------module使用------</h4>
+    <h5>{{$store.state.a.name}}</h5>
+    <button @click="updateName">修改名字</button>
+    <h5>fulName:{{$store.getters.fulName}}</h5>
+    <h5>fulName2:{{$store.getters.fulName2}}</h5>
+    <h5>fulName3:{{$store.getters.fulName3}}</h5>
+    <button @click="aUpdateName">异步修改名字</button>
     <!-- 父传子 -->
     <hello :counter='counter' />
   </div>
@@ -93,6 +101,12 @@ export default {
         console.log('在action中使用的promise，在使用时执行.then');
         console.log(res);
       })
+    },
+    updateName(){
+      this.$store.commit('updateName','修改后的name')
+    },
+    aUpdateName(){
+      this.$store.dispatch('aUpdateName')
     }
   }
 }
