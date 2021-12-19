@@ -60,7 +60,14 @@ export default {
     },
     addCount(count){
       // count: 荷载 payload
-      this.$store.commit('addCount',count)
+      // 1. 普通提交风格
+      // this.$store.commit('addCount',count);
+
+      // 2. 带类型的提交
+      this.$store.commit({
+        type:'addCount',
+        count, //对象增强写法
+      })
     },
     addStu(){
       const stu = {id:105, name: 'hua',age:611};

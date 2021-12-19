@@ -32,8 +32,15 @@ export default createStore({
     decrement(state) {
       state.counter--;
     },
-    addCount(state, count) {
-      state.counter += count;
+    // 1. 普通风格的mutation
+    // addCount(state, count) {
+    //   state.counter += count;
+    // },
+    // 2. 带type的提交
+    addCount(state, payload) {
+      // 这里的payload是使用时传递的参数，是整个对象
+      console.log(payload);
+      state.counter += payload.count;
     },
     addStu(state, stu) {
       state.stu.push(stu);
