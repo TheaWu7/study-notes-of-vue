@@ -115,12 +115,22 @@ export default createStore({
   actions: {
     // 第一个参数统一：context
     // 第二个参数：payload
+    // acyncUpdateInfo(context, payload) {
+    //   setTimeout(() => {
+    //     // actions 后 需要加上mutation中定义的方法
+    //     context.commit("updateInfo");
+    //     console.log(payload);
+    //   }, 1000);
+    // },
     acyncUpdateInfo(context, payload) {
-      setTimeout(() => {
-        // actions 后 需要加上mutation中定义的方法
-        context.commit("updateInfo");
-        console.log(payload);
-      }, 1000);
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          // actions 后 需要加上mutation中定义的方法
+          context.commit("updateInfo");
+          console.log(payload);
+          resolve("action中调用resolve");
+        }, 1000);
+      });
     },
   },
   modules: {},

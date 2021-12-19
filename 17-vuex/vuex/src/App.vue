@@ -87,7 +87,12 @@ export default {
     },
     // 在action中定义的方法，用dispatch执行
     acyncUpdateInfo(){
-      this.$store.dispatch('acyncUpdateInfo','传递参数')
+      this.$store
+      .dispatch('acyncUpdateInfo','传递参数')
+      .then(res => {
+        console.log('在action中使用的promise，在使用时执行.then');
+        console.log(res);
+      })
     }
   }
 }
