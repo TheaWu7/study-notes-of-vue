@@ -7,7 +7,7 @@
  */
 import Vue from "vue";
 import { createStore } from "vuex";
-import { INCREMENT, DECREMENT, ADDCOUNT, ADDSTU, CHANGEINFO } from "./mutation-type";
+import { INCREMENT, DECREMENT, ADDCOUNT, ADDSTU, CHANGEINFO } from "./mutation-type.js";
 
 export default createStore({
   // 保存状态
@@ -24,7 +24,26 @@ export default createStore({
       age: 18,
     },
   },
-  // 方法
+  // getters
+  getters: {
+    moreSep(state) {
+      return state.stu.filter((s) => s.age > 900);
+    },
+    // 方法的第二个参数：getters --> 对getter中定义的方法再加工
+    moreSepLength(state, getters) {
+      //获取 sep 之后的个数
+      return getters.moreSep.length;
+    },
+    // 接受调用时的传参
+    gtAge(state) {
+      // 返回一个函数
+      // return function (iage) {
+      //   return state.stu.filter((s) => s.age > iage);
+      // };
+      return (iage) => state.stu.filter((s) => s.age > iage);
+    },
+  },
+  // 方法(only同步)
   /**
    * mutation：
    *  1. 字符串的事件类型(type)
@@ -32,7 +51,7 @@ export default createStore({
    *  3. mutation携带参数：payload eg.count stu
    */
   mutations: {
-    // learing
+    // learing 使用时注释掉这段
     increment(state) {
       state.counter++;
     },
@@ -65,6 +84,10 @@ export default createStore({
       // 响应式删除：
       Vue.delete(state.info, "age");
     },
+    updateInfo(state) {
+      state.info.age = 21;
+    },
+    // learning
 
     // 使用类型常量
     [INCREMENT](state) {
@@ -73,53 +96,33 @@ export default createStore({
     [DECREMENT](state) {
       state.counter--;
     },
-    // 1. 普通风格的mutation
-    // addCount(state, count) {
-    //   state.counter += count;
-    // },
-    // 2. 带type的提交
     [ADDCOUNT](state, payload) {
-      // 这里的payload是使用时传递的参数，是整个对象
       console.log(payload);
       state.counter += payload.count;
     },
     [ADDSTU](state, stu) {
       state.stu.push(stu);
     },
-    // store 的响应式 只在于提前在store中定义好的属性
     [CHANGEINFO](state) {
-      // 可响应式改变：age 提前定义过
       state.info.age = 20;
-      // 不能响应式改变新加的内容
-      state.info["address"] = "peking"; //并没有响应式
-      // 若想要响应式新增属性：
-      Vue.set(state.info, "address", "peking");
+      // 增加属性
+      Vue.set(state.info, "address", "peking"); //vue3 seems dont work
       // 删除属性
-      delete state.info.age; //不是响应式
-      // 响应式删除：
-      Vue.delete(state.info, "age");
+      Vue.delete(state.info, "age"); //vue3 seems dont work
     },
   },
-  // getters
-  getters: {
-    moreSep(state) {
-      return state.stu.filter((s) => s.age > 900);
-    },
-    // 方法的第二个参数：getters --> 对getter中定义的方法再加工
-    moreSepLength(state, getters) {
-      //获取 sep 之后的个数
-      return getters.moreSep.length;
-    },
-    // 接受调用时的传参
-    gtAge(state) {
-      // 返回一个函数
-      // return function (iage) {
-      //   return state.stu.filter((s) => s.age > iage);
-      // };
-      return (iage) => state.stu.filter((s) => s.age > iage);
+  // 异步方法
+  actions: {
+    // 第一个参数统一：context
+    // 第二个参数：payload
+    acyncUpdateInfo(context, payload) {
+      setTimeout(() => {
+        // actions 后 需要加上mutation中定义的方法
+        context.commit("updateInfo");
+        console.log(payload);
+      }, 1000);
     },
   },
-  actions: {},
   modules: {},
 });
 

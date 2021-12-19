@@ -10,9 +10,6 @@
     <h4>{{$store.state.counter}}</h4>
     <button @click="add">+</button>
     <button @click="sub">-</button>
-    <button @click="addCount(5)">+5</button>
-    <button @click="addCount(10)">+10</button>
-    <button @click="addStu">+stu</button>
 
     <h2>-----App的getter-----</h2>
     <h4>{{$store.state.stu}}</h4>
@@ -26,6 +23,13 @@
     <!-- 获取年龄大于age（不定）的stu -->
     <h4>传参：{{$store.getters.gtAge(600)}}</h4>
 
+    <h2>-----mutation相关-----</h2>
+    <button @click="addCount(5)">+5</button>
+    <button @click="addCount(10)">+10</button>
+    <button @click="addStu">+stu</button>
+    <h4>info:{{$store.state.info}}</h4>
+    <button @click="changeinfo">changeinfo</button>
+    <button @click="acyncUpdateInfo">acyncUpdateInfo</button>
     <!-- 父传子 -->
     <hello :counter='counter' />
   </div>
@@ -33,7 +37,7 @@
 
 <script>
 import hello from './components/HelloWorld.vue'
-import { INCREMENT, DECREMENT, ADDCOUNT, ADDSTU, CHANGEINFO } from "./mutation-type";
+import { INCREMENT, DECREMENT, ADDCOUNT, ADDSTU, CHANGEINFO } from "./store/mutation-type";
 
 export default {
   name: 'App',
@@ -76,8 +80,15 @@ export default {
     },
     addStu(){
       const stu = {id:105, name: 'hua',age:611};
-      this.$store.commit('addStu',stu)
+      this.$store.commit(ADDSTU,stu)
     },
+    changeinfo(){
+      this.$store.commit(CHANGEINFO)
+    },
+    // 在action中定义的方法，用dispatch执行
+    acyncUpdateInfo(){
+      this.$store.dispatch('acyncUpdateInfo','传递参数')
+    }
   }
 }
 </script>
