@@ -72,7 +72,7 @@ export default {
     addStu(){
       const stu = {id:105, name: 'hua',age:611};
       this.$store.commit('addStu',stu)
-    }
+    },
   }
 }
 </script>

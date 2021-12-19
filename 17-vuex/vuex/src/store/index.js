@@ -5,6 +5,7 @@
 /**
  *  原本内容
  */
+import Vue from "vue";
 import { createStore } from "vuex";
 
 export default createStore({
@@ -17,6 +18,10 @@ export default createStore({
       { id: 103, name: "yu", age: 307 },
       { id: 104, name: "yue", age: 1212 },
     ],
+    info: {
+      name: "thea",
+      age: 18,
+    },
   },
   // 方法
   /**
@@ -44,6 +49,19 @@ export default createStore({
     },
     addStu(state, stu) {
       state.stu.push(stu);
+    },
+    // store 的响应式 只在于提前在store中定义好的属性
+    changeInfo(state) {
+      // 可响应式改变：age 提前定义过
+      state.info.age = 20;
+      // 不能响应式改变新加的内容
+      state.info["address"] = "peking"; //并没有响应式
+      // 若想要响应式新增属性：
+      Vue.set(state.info, "address", "peking");
+      // 删除属性
+      delete state.info.age; //不是响应式
+      // 响应式删除：
+      Vue.delete(state.info, "age");
     },
   },
   // getters
