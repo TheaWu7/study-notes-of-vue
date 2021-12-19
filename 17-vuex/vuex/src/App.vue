@@ -33,6 +33,8 @@
 
 <script>
 import hello from './components/HelloWorld.vue'
+import { INCREMENT, DECREMENT, ADDCOUNT, ADDSTU, CHANGEINFO } from "./mutation-type";
+
 export default {
   name: 'App',
   data(){
@@ -53,10 +55,13 @@ export default {
     add(){
       // 使用vuex中定义的方法
       // 通过mutation更新
-      this.$store.commit('increment')
+      // this.$store.commit('increment')
+      // 类型常量
+      this.$store.commit(INCREMENT)
     },
     sub(){
-      this.$store.commit('decrement')
+      this.$store.commit(DECREMENT)
+      // this.$store.commit('decrement')
     },
     addCount(count){
       // count: 荷载 payload
